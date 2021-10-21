@@ -26,12 +26,12 @@ def f(x, a, b):
     return func
 
 """ Main body """
-# Import given wavedata from file and split into X and Y components
+# Create X and Y data
 X = np.linspace(1, 10, 1000)
 Y = 1/X
 
 # Calculate Fourier coefficients
-k = 20
+k = 500
 a, b = fourier(X, Y, k)
 
 # Input calculated a and b coefficients to obtain Fourier expansion of wave data
@@ -39,9 +39,9 @@ fourier = f(X, a, b)
 
 """ Plotting and formatting """
 fig = plt.figure(figsize = (15, 9))
-ax3 = fig.add_subplot(111, title = f'Plot of Fourier reconstruction with terms up to n = {k}')
-ax3.plot(X, Y, label = 'Plot of input data')
-ax3.plot(X, fourier, label = f'Fourier approximation')
-ax3.legend()
+ax1 = fig.add_subplot(111, title = f'Plot of Fourier reconstruction with terms up to n = {k}')
+ax1.plot(X, Y, label = 'Plot of input data')
+ax1.plot(X, fourier, label = f'Fourier approximation')
+ax1.legend()
 
 plt.show()
