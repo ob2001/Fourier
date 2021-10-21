@@ -43,22 +43,23 @@ fourier10 = f(X, a10, b10)
 fig = plt.figure(figsize = (15, 9))
 gs = gridspec.GridSpec(ncols = 2, nrows = 2, figure = fig)
 
-ax1 = fig.add_subplot(gs[0, 0], ylim = (min(a10 + b10) - 1, max(a10 + b10) + 1), xlabel = 'n', ylabel = 'Magnitude of corresponding cos term; a_n',
-        title = 'Bar graph of coefficients of cos(2nπx/Period) up to n=10')
-ax2 = fig.add_subplot(gs[0, 1], ylim = (min(a10 + b10) - 1, max(a10 + b10) + 1), xlabel = 'n', ylabel = 'Magnitude of corresponding sin term; b_n',
-        title = 'Bar graph of coefficients of sin(2nπx/Period) up to n=10')
-ax3 = fig.add_subplot(gs[1, 0], title = f'Plot of Fourier reconstruction with terms up to n = 5')
-ax4 = fig.add_subplot(gs[1, 1], title = 'Plot of Fourier reconstruction with terms up to n = 10')
+ax1 = fig.add_subplot(gs[0, 0], ylim = (min(a10 + b10) - 1, max(a10 + b10) + 1), xlabel = '${n}$', ylabel = 'Magnitude of corresponding cos term; ${a_n}$', title = r'Magnitude of coefficients of ${\cos\left(\frac{2nπx}{Period}\right)}$ up to ${n=10}$')
+ax2 = fig.add_subplot(gs[0, 1], ylim = (min(a10 + b10) - 1, max(a10 + b10) + 1), xlabel = '${n}$', ylabel = 'Magnitude of corresponding sin term; ${b_n}$', title = r'Magnitude of coefficients of ${\sin\left(\frac{2nπx}{Period}\right)}$ up to ${n=10}$')
+ax3 = fig.add_subplot(gs[1, 0], xlabel = 'x', ylabel = 'y',
+        title = 'Fourier reconstruction with terms up to ${n = 5}$')
+ax4 = fig.add_subplot(gs[1, 1], xlabel = 'x', ylabel = 'y',
+        title = 'Fourier reconstruction with terms up to ${n = 10}$')
 
-ax1.bar(np.arange(0, 10, 1), a10)
-ax2.bar(np.arange(0, 10, 1), b10)
+ax1.bar(np.arange(0, 11, 1), a10 + [0])
+ax2.bar(np.arange(0, 11, 1), b10 + [0])
 
 ax3.plot(X, Y, label = 'Plot of input data')
-ax3.plot(X, fourier5, label = f'Fourier approximation')
+ax3.plot(X, fourier5, label = 'Fourier approximation')
 ax3.legend()
 
 ax4.plot(X, Y, label = 'Plot of input data')
 ax4.plot(X, fourier10, label = 'Fourier approximation')
 ax4.legend()
 
+plt.savefig('fourier.png', dpi = 600)
 plt.show()
